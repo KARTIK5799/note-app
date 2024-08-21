@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task Content</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <style>
+        body {
+            background: radial-gradient(circle at 50% 50%, #1a1a2e, #16213e);
+        }
+
+        .glassmorphism {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .content {
+            font-family: 'Source Sans Pro', sans-serif;
+        }
+
+        pre {
+            font-size: 1.1rem;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+
+<body class=" text-white font-sans leading-relaxed">
+    <a href="/" class="inline-block mt-4 ml-5 flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors font-semibold">
+        <span class="material-symbols-outlined">arrow_back</span> Back to Task List
+    </a>
+
+    <div class="main flex flex-col items-center w-full h-screen py-10 overflow-hidden">
+        <div class="task glassmorphism w-full max-w-4xl p-8 rounded-lg shadow-2xl">
+            <div class="mb-6 flex items-center justify-between">
+                <h2 class="text-3xl font-bold text-center text-blue-400 cursor-pointer"><%= filename %></h2>
+                <a href="/edit/<%= filename %>" class="text-blue-400 hover:text-blue-300 transition-colors">
+                    <p  class="text-yellow-500 hover:text-yellow-400 transition-colors">
+                        <span class="material-symbols-outlined">edit</span>
+                    </p>
+                </a>
+            </div>
+            <pre class="whitespace-pre-wrap bg-gray-800 p-4 rounded-lg overflow-x-auto"><%= filedata %></pre>
+        </div>
+    </div>
+</body>
+
+</html>

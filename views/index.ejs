@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <title>Note App</title>
+    <style>
+        body {
+            background: radial-gradient(circle at 50% 50%, #1a1a2e, #16213e);
+        }
+        .glassmorphism {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .btn-glow {
+            box-shadow: 0 0 10px #00d4ff, 0 0 20px #00d4ff, 0 0 30px #00d4ff;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white font-sans leading-relaxed">
+  <div class="main flex flex-col items-center w-full h-screen py-10 overflow-hidden">
+    <!-- Form Section -->
+    <div class="form glassmorphism w-full max-w-xl p-8 rounded-lg shadow-2xl transition-transform">
+        <h2 class="text-3xl font-bold text-center mb-6">Create a New Task</h2>
+        <form action="/create" method="post">
+            <input name="title" type="text" placeholder="Task Title" class="block w-full px-5 py-3 glassmorphism text-white placeholder-gray-400 focus:ring-2 focus:ring-blue-500 mb-4 outline-none shadow-md rounded-lg">
+            <textarea name="description" placeholder="Task Description" class="block w-full px-5 py-3 glassmorphism text-white placeholder-gray-400 resize-none focus:ring-2 focus:ring-blue-500 outline-none mb-4 shadow-md rounded-lg" rows="4"></textarea>
+            <input type="submit" value="Create Task" class="w-full bg-blue-600 hover:bg-blue-700 transition-all p-3 rounded-lg text-white font-bold cursor-pointer shadow-lg btn-glow">
+        </form>
+    </div>
+
+    <!-- Tasks Section -->
+    <div class="tasks w-full max-w-4xl mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 overflow-x-auto">
+        <% if (files.length > 0) { %>
+            <% files.forEach(function (val) { %>
+                <div class="task glassmorphism rounded-lg shadow-lg p-6 transition-all">
+                    <div class="flex justify-between items-center">
+                        <h3 class="text-2xl font-bold mb-4"><%= val %></h3>
+                        <form action="/delete/<%= val %>" method="post" class="flex items-center">
+                            <button type="submit" class="text-red-500 hover:text-red-400 transition-colors">
+                                <span class="material-symbols-outlined">delete</span>
+                            </button>
+                        </form>
+                    </div>
+                    <a href="/file/<%= val %>" class="inline-block text-blue-500 hover:text-blue-400 transition-colors font-semibold">Read More</a>
+                </div>
+            <% }) %>
+        <% } else { %>
+            <div class="col-span-full text-center glassmorphism p-8 rounded-lg shadow-lg">
+                <h3 class="text-2xl font-bold mb-4">No Tasks Available</h3>
+                <p class="text-gray-400">You have no tasks at the moment. Create a new task to get started!</p>
+            </div>
+        <% } %>
+    </div>
+  </div>
+</body>
+</html>
